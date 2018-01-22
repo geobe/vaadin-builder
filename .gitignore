@@ -1,1 +1,6 @@
 /vaadin-builder.iml
+build
+out
+/.gradle
+/vaadin-builder.iws
+/vaadin-builder.ipr

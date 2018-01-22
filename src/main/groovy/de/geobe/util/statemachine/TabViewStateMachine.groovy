@@ -1,4 +1,28 @@
-package de.geobe.util.vaadin
+/*
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2018.  Georg Beier. All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+package de.geobe.util.statemachine
 
 import groovy.util.logging.Slf4j
 
@@ -71,7 +95,7 @@ class TabViewStateMachine {
         Dialog,   // enter a modal dialog
     }
 
-    private DialogStateMachine sm
+    private StateMachine sm
 
     private Map<State, Closure> onEntry = new HashMap<>()
     private Map<State, Closure> onExit = new HashMap<>()
@@ -89,14 +113,14 @@ class TabViewStateMachine {
     TabViewStateMachine(State initial, String id = 'tvsm') {
         switch (initial) {
             case State.TOPTAB:
-                sm = new DialogStateMachine(State.TOPTAB, id)
+                sm = new StateMachine(State.TOPTAB, id)
                 break
             case State.SUBTAB:
-                sm = new DialogStateMachine(State.SUBTAB, id)
+                sm = new StateMachine(State.SUBTAB, id)
                 break
             default:
                 log.warn("unexpected initial state $initial")
-                sm = new DialogStateMachine(State.TOPTAB, id)
+                sm = new StateMachine(State.TOPTAB, id)
         }
         buildDialogSM()
     }
@@ -106,8 +130,8 @@ class TabViewStateMachine {
     }
 
     /**
-     * delegate calculating a unique transition index from current state
-     * and triggering event to DialogStateMachine
+     * delegate calculating a unique transition trix from current state
+     * and triggering event to StateMachine
      * @param st current state
      * @param ev event triggering transition
      * @return a unique Integer computed from state and event
