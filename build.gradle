@@ -27,7 +27,7 @@ ext {
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.12'
     compile('com.vaadin:vaadin-spring-boot-starter:2.0.1')
-    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
+//    testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
 //    testCompile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'
 }
 
