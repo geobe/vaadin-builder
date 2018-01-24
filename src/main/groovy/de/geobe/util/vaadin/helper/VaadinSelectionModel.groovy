@@ -22,7 +22,10 @@
  * SOFTWARE.
  */
 
-package de.geobe.util.view
+package de.geobe.util.vaadin.helper
+
+import de.geobe.util.vaadin.type.VaadinSelectionListener
+import de.geobe.util.vaadin.type.VaadinTreeRootChangeListener
 
 /**
  * Default implementation and delegate for VaadinSelectionModels Listeners.<br>

@@ -22,20 +22,20 @@
  * SOFTWARE.
  */
 
-package de.geobe.util.view
+package de.geobe.util.vaadin.type
 
 /**
- * In working with multi rooted tree views, it might be interesting to be notified
- * when a branch with a different root element is selected
- *
- * @author georg beier
+ * Created by georg beier on 24.01.2018.
  */
-interface VaadinTreeRootChangeListener {
+interface DetailSelector {
+
     /**
-     * is fired when the newly selected component is in a differently rooted
-     * branch of the tree
-     *
-     * @param event id of the new root element, normally containing its id and domain class key
+     * enable and update the selector component after editing an item
+     * @param itemId identifies edited item
+     * @param caption eventually updated caption of the edited item
+     * @param mustReload Component must reload after new item was created
+     *        or (tree-) structure changed
      */
-    void onRootChanged(Map<String, Serializable> event)
+    void onEditItemDone(Object itemId, String caption, boolean mustReload)
+
 }

@@ -22,17 +22,20 @@
  * SOFTWARE.
  */
 
-package de.geobe.util.view
+package de.geobe.util.vaadin.type
 
 /**
- * distribute Vaadin selection events
+ * In working with multi rooted tree views, it might be interesting to be notified
+ * when a branch with a different root element is selected
+ *
  * @author georg beier
  */
-interface VaadinSelectionListener {
+interface VaadinTreeRootChangeListener {
     /**
-     * is fired when an entry of a selection component was selected
+     * is fired when the newly selected component is in a differently rooted
+     * branch of the tree
      *
-     * @param event id of the selected element, normally containing its id and domain class key
+     * @param event id of the new root element, normally containing its id and domain class key
      */
-    void onItemSelected(Map<String, Serializable> event)
+    void onRootChanged(Map<String, Serializable> event)
 }

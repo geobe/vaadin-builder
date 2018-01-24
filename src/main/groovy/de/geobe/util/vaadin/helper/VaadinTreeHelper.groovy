@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package de.geobe.util.view
+package de.geobe.util.vaadin.helper
 
 import com.vaadin.data.TreeData
 import com.vaadin.data.provider.TreeDataProvider
