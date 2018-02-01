@@ -382,6 +382,9 @@ class VaadinBuilder extends BuilderSupport {
     private void initFields() {
         fields << [button: 'com.vaadin.ui.Button']
         fields << [checkbox: 'com.vaadin.ui.CheckBox']
+        fields << [radiobutton: 'com.vaadin.ui.RadioButton']
+        fields << [radiobuttongroup: 'com.vaadin.ui.RadioButtonGroup']
+        fields << [checkboxgroup: 'com.vaadin.ui.CheckBoxGroup']
         fields << [text: 'com.vaadin.ui.TextField']
         fields << [password: 'com.vaadin.ui.PasswordField']
         fields << [textarea: 'com.vaadin.ui.TextArea']
@@ -393,7 +396,7 @@ class VaadinBuilder extends BuilderSupport {
         fields << [list: 'com.vaadin.ui.ListSelect']
         fields << [nativeselect: 'com.vaadin.ui.NativeSelect']
         fields << [twincol: 'com.vaadin.ui.TwinColSelect']
-        fields << [optiongroup: 'com.vaadin.ui.OptionGroup']
+//        fields << [optiongroup: 'com.vaadin.ui.OptionGroup']
         fields << [table: 'com.vaadin.ui.Table']
         fields << [tree: 'com.vaadin.ui.Tree']
         fields << [slider: 'com.vaadin.ui.Slider']
@@ -437,6 +440,9 @@ class VaadinBuilder extends BuilderSupport {
     public static enum F {
         button,
         checkbox,
+        radiobutton,
+        radiobuttongroup,
+        checkboxgroup,
         text,
         password,
         textarea,
@@ -448,7 +454,7 @@ class VaadinBuilder extends BuilderSupport {
         list,
         nativeselect,
         twincol,
-        optiongroup,
+//        optiongroup,
         table,
         tree,
         slider,

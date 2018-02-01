@@ -22,17 +22,13 @@
  * SOFTWARE.
  */
 
-package de.geobe.util.vaadin.type
+package de.geobe.util.vaadin.helper
 
 /**
- * distribute Vaadin selection events
- * @author georg beier
+ * make sure that implementing objects supply an Id
+ *
+ * Created by georg beier on 25.01.2018.
  */
-interface VaadinSelectionListener<T> {
-    /**
-     * is fired when an entry of a selection component was selected
-     *
-     * @param event id of the selected element, normally containing its id and domain class key
-     */
-    void onItemSelected(T event)
+interface IdProvider<ID> {
+    ID getId()
 }

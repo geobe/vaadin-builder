@@ -27,7 +27,6 @@ ext {
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.12'
     compile('com.vaadin:vaadin-spring-boot-starter:2.0.1')
-    compile project(':state-machine')
 }
 
 dependencyManagement {

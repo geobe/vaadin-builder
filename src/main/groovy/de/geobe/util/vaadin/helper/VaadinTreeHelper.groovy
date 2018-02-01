@@ -33,7 +33,7 @@ import com.vaadin.ui.Tree
  * <br>
  * @author georg beier
  */
-class VaadinTreeHelper<T> {
+class VaadinTreeHelper<T extends IdProvider> {
     Tree<T> tree
     TreeData<T> treeData
 
@@ -59,14 +59,14 @@ class VaadinTreeHelper<T> {
 
     /**
      * build a vaadin tree for a given tree data structure. To ease the work with tree
-     * selections, id's for the vaadin tree node consist of single element maps with a
+     * selections, id's for the vaadin tree node consist of Tuple2 objects with a
      * key describing the kind of object represented by the node and a value, typically
      * a database key or other unique value used to lookup the domain instance
      * represented by this tree node
      * @param roots an array of root nodes
      * @param kidCollector closure that extracts a collection of child nodes
      */
-    public void buildTreeData(Collection<T> roots, Closure<Collection<T>> kidCollector) {
+    public void buildTree(Collection<T> roots, Closure<Collection<T>> kidCollector) {
         treeData = new TreeData<>()
         TreeDataProvider<T> provider = new TreeDataProvider<>(treeData)
         addToTree(null, roots, kidCollector)
@@ -82,6 +82,7 @@ class VaadinTreeHelper<T> {
      */
     private void addToTree(T base, Collection<T> kids,
                            Closure<Collection<T>> kidCollector) {
+//        def b = base ? base.id : null
         kids.each { T kid ->
             treeData.addItem(base, kid)
         }
@@ -104,14 +105,23 @@ class VaadinTreeHelper<T> {
             node
     }
 
-    public expandAll() {
+    /**
+     * expand all nodes of the tree
+     */
+    public void expandAll() {
         tree.expand allItems()
     }
 
+    /**
+     * get a list of all items in the tree
+     *
+     * @return a List of all treenode items
+     */
     public allItems() {
         accumulateItems treeData.rootItems
     }
 
+    /** recursively walk the tree */
     private accumulateItems(List<T> items) {
         def accu = []
         items.each {
@@ -121,34 +131,56 @@ class VaadinTreeHelper<T> {
         accu
     }
 
+    public void clear() {
+        treeData.clear()
+    }
+
     /**
-     * get a List that contains ids of all expanded nodes.
+     * get a List that contains all expanded nodes.
      *
      * @return the expanded node list
      */
-    public getAllExpanded() {
-        tree.itemIds.findAll {
-            tree.isExpanded(it)
+    public getIdsOfExpanded() {
+        def expanded = allItems().findAll {T node ->
+            def ex = tree.isExpanded(node)
+            ex
         }
+        def expIds = expanded.collect {T it -> it.id}
+        expIds
     }
 
     /**
      * try to identify previously expanded nodes from List and reexpand them after
-     * a tree reload. As node id objects differ after reload, this needs a
+     * a tree reload. As node objects differ after reload, this needs a
      * comparison in groovy
      *
      * @param exp the list generated before tree reload
      */
     public void reexpand(Collection exp) {
-        tree.itemIds.findAll { itemId ->
-            exp.find { it == itemId }
-        }.each {
-            tree.expandItem(it)
+        def toExpand = allItems().findAll { T node ->
+            exp.contains node.id
+        }
+        tree.expand toExpand
+    }
+
+    /**
+     * look for ne4w node with the same id as previously selected node
+     * before tree reload and select it
+     * @param id the id of node to be selected
+     */
+    public void reselect(def id) {
+        if(id) {
+            T selectedNode = allItems().find { T node ->
+                id == node.id
+            }
+            if (selectedNode) {
+                tree.select selectedNode
+            }
         }
     }
 
     /**
-     * find matching itemId in the tree by comparing each id of type Map with the
+     * find matching itemId in the tree by comparing each id with the
      * match parameter. This is necessary because Tree uses Identity and not Equality
      * to compare ids. So you cannot directly look for an equal but not identical key
      *

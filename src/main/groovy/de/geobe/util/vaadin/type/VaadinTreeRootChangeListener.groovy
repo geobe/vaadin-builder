@@ -30,12 +30,12 @@ package de.geobe.util.vaadin.type
  *
  * @author georg beier
  */
-interface VaadinTreeRootChangeListener {
+interface VaadinTreeRootChangeListener<T> {
     /**
      * is fired when the newly selected component is in a differently rooted
      * branch of the tree
      *
      * @param event id of the new root element, normally containing its id and domain class key
      */
-    void onRootChanged(Map<String, Serializable> event)
+    void onRootChanged(T event)
 }

@@ -27,7 +27,7 @@ package de.geobe.util.vaadin.type
 /**
  * Created by georg beier on 24.01.2018.
  */
-interface DetailSelector {
+interface DetailSelector<IDTYPE> {
 
     /**
      * enable and update the selector component after editing an item
@@ -36,6 +36,6 @@ interface DetailSelector {
      * @param mustReload Component must reload after new item was created
      *        or (tree-) structure changed
      */
-    void onEditItemDone(Object itemId, String caption, boolean mustReload)
+    void onEditItemDone(IDTYPE itemId, String caption, boolean mustReload)
 
 }

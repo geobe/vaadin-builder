@@ -30,14 +30,14 @@ import de.geobe.util.vaadin.type.VaadinTreeRootChangeListener
 /**
  * Default implementation and delegate for VaadinSelectionModels Listeners.<br>
  *     Supports different kinds of objects within one selection component, e.g. a Tree.
- *     We suppose that the relevant item ids consist of a Map with a key (e.g. a class name)
- *     and a value (e.g. an object id from the persistent storage).
+ *     We suppose that the relevant item ids consist of a Tuple2 with a key as first element
+ *     (e.g. a class name) and a value as second element (e.g. an object id from the persistent storage).
  *     ListenersForKey subscribe for a certain key and are notified with the value when an
  *     item with "their" key is selected. KeyListeners get notified with the key when any
  *     item with a Map-id is selected.<br>
  * @author georg beier
  */
-class VaadinSelectionModel {
+class VaadinSelectionModel<T extends IdProvider<Tuple2>> {
     private Map<String, Set<VaadinSelectionListener>> keySelectiveListeners = new LinkedHashMap<>()
     private Set<VaadinSelectionListener> anyKeyListeners = new LinkedHashSet<>()
     private Set<VaadinTreeRootChangeListener> rootChangeListeners = new LinkedHashSet<>()
@@ -69,12 +69,14 @@ class VaadinSelectionModel {
         rootChangeListeners.remove(changeListener)
     }
 
-    public void notifyChange(Map<String, Serializable> rawEvent) {
-        keySelectiveListeners[rawEvent['type']].each { it.onItemSelected(rawEvent) }
+    public void notifyChange(T rawEvent) {
+        keySelectiveListeners[rawEvent.id.first()].each {
+            it.onItemSelected(rawEvent)
+        }
         anyKeyListeners.each { it.onItemSelected(rawEvent) }
     }
 
-    public void notifyRootChange(Map<String, Serializable> rawEvent) {
+    public void notifyRootChange(T rawEvent) {
         rootChangeListeners.each { it.onRootChanged(rawEvent) }
     }
 }
