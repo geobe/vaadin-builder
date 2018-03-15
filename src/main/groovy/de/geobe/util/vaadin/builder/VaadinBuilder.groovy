@@ -370,9 +370,10 @@ class VaadinBuilder extends BuilderSupport {
         containers << [hlayout: 'com.vaadin.ui.HorizontalLayout']
         containers << [vlayout: 'com.vaadin.ui.VerticalLayout']
         containers << [csslayout: 'com.vaadin.ui.CssLayout']
+    }
+
 //        containers << [customlayout:CustomLayout']
 //        containers << [customcomponent:CustomComponent']
-    }
 
     /**
      * put all supported field components into a map
@@ -396,7 +397,6 @@ class VaadinBuilder extends BuilderSupport {
         fields << [list: 'com.vaadin.ui.ListSelect']
         fields << [nativeselect: 'com.vaadin.ui.NativeSelect']
         fields << [twincol: 'com.vaadin.ui.TwinColSelect']
-//        fields << [optiongroup: 'com.vaadin.ui.OptionGroup']
         fields << [table: 'com.vaadin.ui.Table']
         fields << [tree: 'com.vaadin.ui.Tree']
         fields << [slider: 'com.vaadin.ui.Slider']
@@ -454,7 +454,6 @@ class VaadinBuilder extends BuilderSupport {
         list,
         nativeselect,
         twincol,
-//        optiongroup,
         table,
         tree,
         slider,
