@@ -29,8 +29,11 @@ import com.vaadin.ui.MenuBar.MenuItem
 import groovy.util.logging.Slf4j
 
 /**
- * Build a Vaadin Component tree including MenuBar menus
- * @author georg beier
+ *     Build a Vaadin Component tree including MenuBar menus.<br>
+ *     See here for a
+ *     <a href="https://www.georgbeier.de/docs-and-howtos/vaadin_builder_doc" target="_blank">
+ *     detailed description and tutorial</a>
+ *     @author georg beier
  */
 @Slf4j
 class VaadinBuilder extends BuilderSupport {
@@ -88,8 +91,8 @@ class VaadinBuilder extends BuilderSupport {
     /**
      * add a custom field component to the builder
      *
-     * @param name  identifies the custom component
-     * @param fqn   fully qualified class name of the component
+     * @param name identifies the custom component
+     * @param fqn fully qualified class name of the component
      */
     def void addCustomField(String name, String fqn) {
         fields[name] = fqn
@@ -98,8 +101,8 @@ class VaadinBuilder extends BuilderSupport {
     /**
      * add a custom container component to the builder
      *
-     * @param name  identifies the custom component
-     * @param fqn   fully qualified class name of the component
+     * @param name identifies the custom component
+     * @param fqn fully qualified class name of the component
      */
     def void addCustomContainer(String name, String fqn) {
         containers[name] = fqn
@@ -318,6 +321,7 @@ class VaadinBuilder extends BuilderSupport {
     /**
      * generate a character representation of this component tree
      * for debugging etc.
+     * @return ASCII graphic representation of component tree
      */
     String toString() {
         def invertedIndex = [:]
@@ -329,6 +333,15 @@ class VaadinBuilder extends BuilderSupport {
         } else {
             ''
         }
+    }
+
+    /**
+     * use another name for toString because toString causes error messages
+     * in IntelliJ IDEA debugger :(
+     * @return ASCII graphic representation of component tree
+     */
+    String display() {
+        toString()
     }
 
     /**
