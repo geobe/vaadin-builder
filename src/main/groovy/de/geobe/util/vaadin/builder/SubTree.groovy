@@ -29,8 +29,11 @@ import com.vaadin.ui.UI
 import de.geobe.util.vaadin.builder.VaadinBuilder
 
 /**
- * A base class for building Vaadin component subtrees with VaadinBuilder
- * @author georg beier
+ *     A base class for building Vaadin component subtrees with VaadinBuilder.<br>
+ *     See here for a
+ *     <a href="https://www.georgbeier.de/docs-and-howtos/vaadin_builder_doc/#subtree" target="_blank">
+ *     detailed description and tutorial</a> on the VaadinBuilder documentation page.<br>
+ *     @author georg beier
  */
 abstract class SubTree {
     /**
