@@ -2,7 +2,7 @@
 A groovy builder for easier programmatic construction of Vaadin Web UIs, following Groovy's builder syntax.
 A complex Vaadin UI can be created and configured declaratively in an easy understandable form.
 
-##Documentation
+## Documentation
 * [Builder Keyword Reference](https://github.com/geobe/vaadin-builder/wiki)
 * [English Vaadin Builder Tutorial](https://www.georgbeier.de/docs-and-howtos/vaadin_builder_doc/)
 * [German Vaadin Builder Tutorial](https://www.georgbeier.de/tutorials-java-und-mehr/java8-spring-groovy-vaadin/vaadin-als-ui-framework/groovy-vaadin-builder/)
@@ -64,4 +64,5 @@ Here is an example for an editing view to be placed inside a split pane:
 ```
 
 It will expand to the right pane of this window:
+
 ![Builder result](exampleUi.jpg)
