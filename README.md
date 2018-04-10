@@ -1,6 +1,6 @@
 # VaadinBuilder
 A groovy builder for easier programmatic construction of Vaadin Web UIs, following Groovy's builder syntax.
-A complex Vaadin UI can be created and configured declaratively in an easyly understandable form.
+A complex Vaadin UI can be created and configured declaratively in an easily understandable form.
 
 ## Documentation
 * [Builder Keyword Reference](https://github.com/geobe/vaadin-builder/wiki)
