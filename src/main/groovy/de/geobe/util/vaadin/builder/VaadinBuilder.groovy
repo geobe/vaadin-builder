@@ -86,6 +86,22 @@ class VaadinBuilder extends BuilderSupport {
     }
 
     /**
+     * containers accessor
+     * @return immutable containers map
+     */
+    def getContainers() {
+        containers.asImmutable()
+    }
+
+    /**
+     * fields accessor
+     * @return immutable fields map
+     */
+    def getFields() {
+        fields.asImmutable()
+    }
+
+    /**
      * add a custom field component to the builder
      *
      * @param name  identifies the custom component
@@ -383,7 +399,7 @@ class VaadinBuilder extends BuilderSupport {
     private void initFields() {
         fields << [button: 'com.vaadin.ui.Button']
         fields << [checkbox: 'com.vaadin.ui.CheckBox']
-        fields << [radiobutton: 'com.vaadin.ui.RadioButton']
+//        fields << [radiobutton: 'com.vaadin.ui.RadioButton']
         fields << [radiobuttongroup: 'com.vaadin.ui.RadioButtonGroup']
         fields << [checkboxgroup: 'com.vaadin.ui.CheckBoxGroup']
         fields << [text: 'com.vaadin.ui.TextField']
@@ -391,17 +407,18 @@ class VaadinBuilder extends BuilderSupport {
         fields << [textarea: 'com.vaadin.ui.TextArea']
         fields << [richtext: 'com.vaadin.ui.RichTextArea']
         fields << [date: 'com.vaadin.ui.DateField']
+        fields << [datetime: 'com.vaadin.ui.DateTimeField']
         fields << [inlinedate: 'com.vaadin.ui.InlineDateField']
-        fields << [popupdate: 'com.vaadin.ui.PopupDateField']
+//        fields << [popupdate: 'com.vaadin.ui.PopupDateField']
         fields << [combo: 'com.vaadin.ui.ComboBox']
         fields << [list: 'com.vaadin.ui.ListSelect']
         fields << [nativeselect: 'com.vaadin.ui.NativeSelect']
         fields << [twincol: 'com.vaadin.ui.TwinColSelect']
-        fields << [table: 'com.vaadin.ui.Table']
+//        fields << [table: 'com.vaadin.ui.Table']
         fields << [tree: 'com.vaadin.ui.Tree']
         fields << [slider: 'com.vaadin.ui.Slider']
         fields << [menubar: 'com.vaadin.ui.MenuBar']
-        fields << [menuitem: 'com.vaadin.ui.MenuBar.MenuItem']
+        fields << [menuitem: 'com.vaadin.ui.MenuBar$MenuItem']
         fields << [progress: 'com.vaadin.ui.ProgressBar']
         fields << [grid: 'com.vaadin.ui.Grid']
         fields << [label: 'com.vaadin.ui.Label']
@@ -440,7 +457,7 @@ class VaadinBuilder extends BuilderSupport {
     public static enum F {
         button,
         checkbox,
-        radiobutton,
+//        radiobutton,
         radiobuttongroup,
         checkboxgroup,
         text,
@@ -448,13 +465,14 @@ class VaadinBuilder extends BuilderSupport {
         textarea,
         richtext,
         date,
+        datetime,
         inlinedate,
-        popupdate,
+//        popupdate,
         combo,
         list,
         nativeselect,
         twincol,
-        table,
+//        table,
         tree,
         slider,
         menubar,
