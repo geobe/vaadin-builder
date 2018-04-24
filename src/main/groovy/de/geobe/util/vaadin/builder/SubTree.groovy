@@ -26,14 +26,13 @@ package de.geobe.util.vaadin.builder
 
 import com.vaadin.ui.Component
 import com.vaadin.ui.UI
-import de.geobe.util.vaadin.builder.VaadinBuilder
 
 /**
  *     A base class for building Vaadin component subtrees with VaadinBuilder.<br>
  *     See here for a
  *     <a href="https://www.georgbeier.de/docs-and-howtos/vaadin_builder_doc/#subtree" target="_blank">
  *     detailed description and tutorial</a> on the VaadinBuilder documentation page.<br>
- *     @author georg beier
+ * @author georg beier
  */
 abstract class SubTree {
     /**
@@ -49,9 +48,9 @@ abstract class SubTree {
     /**
      * set component prefix in builder, delegate building subtree to subclass
      * and reset prefix afterwards.
-     * @param builder   VaadinBuilder instance that builds the whole GUI
-     * @param componentPrefix   name prefix for components in this subtree
-     * @return  topmost component (i.e. root) of this subtree
+     * @param builder VaadinBuilder instance that builds the whole GUI
+     * @param componentPrefix name prefix for components in this subtree
+     * @return topmost component (i.e. root) of this subtree
      */
     Component buildSubtree(VaadinBuilder builder, String componentPrefix) {
         this.vaadin = builder
@@ -65,7 +64,7 @@ abstract class SubTree {
 
     /**
      * build component subtree.
-     * @return  topmost component (i.e. root) of subtree
+     * @return topmost component (i.e. root) of subtree
      */
     abstract Component build()
 
@@ -76,28 +75,37 @@ abstract class SubTree {
      */
     void init(Object... value) {}
 
-    protected setComponentValue(String id, Object value) {
-        uiComponents."${subkeyPrefix + id}".value = value.toString()
-    }
-
-    protected setComponentValue(String id, Boolean value) {
-        uiComponents."${subkeyPrefix + id}".value = value
-    }
-
+    /**
+     * find the top level UI component of a given component
+      * @param c here we start to look
+     * @return the corresponding UI instance
+     */
     protected UI getVaadinUi(Component c) {
         Component parent = c?.parent
-        if(parent instanceof UI) {
+        if (parent instanceof UI) {
             parent
         } else {
             getVaadinUi(parent)
         }
     }
 
+    /**
+     * catch conversion exceptions from String to Long
+     */
     protected Long longFrom(String val) {
         try {
             new Long(val)
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             0L
         }
+    }
+
+    /**
+     * easy access to components in this component subtree without
+     * need to concat subkeyPrefix
+     * @return matching component
+     */
+    protected subtreeComponent(String id) {
+        vaadin.uiComponents["${subkeyPrefix + id}"]
     }
 }
