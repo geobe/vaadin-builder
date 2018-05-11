@@ -34,8 +34,8 @@ import com.vaadin.ui.Tree
  * @author georg beier
  */
 class VaadinTreeHelper<T extends IdProvider> {
-    Tree<T> tree
-    TreeData<T> treeData
+    private Tree<T> tree
+    private TreeData<T> treeData
 
     /**
      * A TreeHelper instance is bound to a Vaadin Tree
@@ -164,7 +164,7 @@ class VaadinTreeHelper<T extends IdProvider> {
     }
 
     /**
-     * look for ne4w node with the same id as previously selected node
+     * look for new node with the same id as previously selected node
      * before tree reload and select it
      * @param id the id of node to be selected
      */
